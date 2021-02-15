@@ -1,0 +1,22 @@
+nginx.ingress.kubernetes.io/use-regex: 'true'
+apiVersion: networking.k8s.io/v1beta1
+# UPDATE THE API
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+ 
+spec:
+  rules:
+    - http:
+        paths:
+        #routing rules
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/?(.*)
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000

@@ -1,0 +1,18 @@
+#scopes or limits the types of objects that are created within the file
+apiVersion: v1
+#object type for setting up networking
+kind: Service
+metadata:
+#important for logging
+  name: client-node-port
+spec:
+  type: NodePort
+  ports:
+  #EXPOSE
+    - port: 3050
+      targetPort: 3000
+      #the port that we access in browser
+      nodePort: 31515
+    #link with metadata and selector names
+  selector:
+    component: web

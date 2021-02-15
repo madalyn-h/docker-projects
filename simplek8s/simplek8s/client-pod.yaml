@@ -1,0 +1,18 @@
+#scopes or limits the types of objects that are created within the file
+apiVersion: v1
+#object type
+kind: Pod
+metadata:
+#important for logging
+  name: client-pod
+  labels:
+    component: web
+spec:
+  containers:
+    - name: client
+
+      image: stephengrider/multi-server
+      
+      ports:
+      #EXPOSE
+        - containerPort: 3000

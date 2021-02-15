@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+#how many to make
+  replicas: 1
+  selector: 
+  #how deployment can track pod after created by master
+    matchLabels:
+      component: web
+  #config for every single pod created by this config file
+  template: 
+    metadata:
+      labels:
+        component: web
+    spec: 
+      containers:
+        - name: client
+          image: stephengrider/multi-client
+          ports:
+            - containerPort: 3000
